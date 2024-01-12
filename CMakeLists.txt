@@ -3,4 +3,5 @@ project(The_Bank_Console)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(The_Bank_Console main.cpp)
+add_executable(The_Bank_Console main.cpp
+        classes.h)
