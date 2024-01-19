@@ -11,6 +11,9 @@ User & logIn(User users[])
    //Loop that runs while checking the users name
    while(true)
    {
+       std::cout << "\n\t\tWelcome to the bank of Chas"
+           << "\n\t===================================\n"
+           << "\n\tPlease enter your username and press enter:\t";
        std::cin >> userInputName;
 
        //Loop that runs and checks if the username input matches an existing username
@@ -54,18 +57,9 @@ int main() {
     //main loop that runs the program
     while (true)
     {
-
-        std::cout << "\n\t\tWelcome to the bank of Chas"
-                  << "\n\t===================================\n"
-                  << "\n\tPlease enter your username and press enter:\t";
-
         //create an object that points to the logged in user
         User activeUser = logIn(users);
-
         std::cout << "\n\tHello again " << activeUser.getUserName();
         break;
-
     }
-
-
 }
