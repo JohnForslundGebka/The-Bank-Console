@@ -36,6 +36,12 @@ public:
 
     }
 
+
+    const std::string & getUserName() {return userName;};
+
+    unsigned int getPinCode() {return pinCode;};
+
+
 };
 
 
