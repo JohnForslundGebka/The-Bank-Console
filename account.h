@@ -8,8 +8,8 @@ class Account
 
 private:
     std::string accountName;
-    std::string currency;
     double accountBalance;
+    std::string currency;
 
 
 public:
@@ -21,6 +21,15 @@ public:
 
     }
 
+    void printAccount()
+    {
+        std::cout << "\tAccount name: " <<  accountName << "\tBalance: " << accountBalance << " " << currency << "\n"; 
+    }
+
+    double getAccountBalance() {return accountBalance;}
+
+    void setAccountBalance(double _newBalance) {accountBalance = _newBalance;}
+    
 
 
 };
