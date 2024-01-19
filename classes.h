@@ -38,7 +38,7 @@ public:
     User () : userName(""), pinCode(0) {};                     //Default constructor
 
     //Constructor for initializing object with username and pin code.
-    User (const std::string &_username, int _pinCode) :  userName(_username), pinCode(_pinCode) {}
+    User (std::string _username, int _pinCode) :  userName(std::move(_username)), pinCode(_pinCode) {}
 
 
     void createNewAccount()
@@ -54,7 +54,7 @@ public:
         std::cout << "\nVad är beloppet på ditt nya konto: ";
         std::cin >> amountOnAccount;
 
-        userAccounts.push_back(Account(accountName, currency, amountOnAccount))
+        userAccounts.push_back(Account(accountName, currency, amountOnAccount));
 
     }
 
