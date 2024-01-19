@@ -13,7 +13,7 @@ private:
 
 
 public:
-    Account(std::string name, std::string curr, double balance)
+    Account(std::string name, double balance, std::string curr)
     {
         accountName = name;
         currency = curr;
@@ -27,7 +27,6 @@ public:
     }
 
     double getAccountBalance() {return accountBalance;}
-
     void setAccountBalance(double _newBalance) {accountBalance = _newBalance;}
     
 
