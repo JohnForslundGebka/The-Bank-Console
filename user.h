@@ -27,12 +27,12 @@ public:
 
         std::cout << "\nMata in namn på ditt nya konto: ";
         std::cin >> accountName;
-        std::cout << "\nVilken valuta skall ditt nya konto ha?";
-        std::cin >> currency;
         std::cout << "\nVad är beloppet på ditt nya konto: ";
         std::cin >> amountOnAccount;
+        std::cout << "\nVilken valuta skall ditt nya konto ha? (exempel KR eller USD)";
+        std::cin >> currency;
 
-        userAccounts.push_back(Account(accountName, currency, amountOnAccount));
+        userAccounts.push_back(Account(accountName, amountOnAccount, currency));
     }
 
 
@@ -51,6 +51,7 @@ public:
         }
     }
 
+    // Promts the user for a transfer of money from one acount to another.
     void transfer()
     {
         int from;
@@ -74,14 +75,14 @@ public:
         } else {
             userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
             userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + amount);
-        }
+        }  
+    }
 
-
-
-
-
-
-       
+    // This function is used for accessing the private member vector "userAccounts" and initialize
+    // the users acounts. 
+    void fillAccountData(std::string name, double balance, std::string currency)
+    {
+        userAccounts.push_back(Account(name, balance, currency));
     }
 };
 
