@@ -7,13 +7,12 @@ User & logIn(User users[])
 {
    std::string userInputName;
    int userInputPinCode;
-
+   std::cout << "\n\t\tWelcome to the bank of Chas"
+           << "\n\t===================================\n"
+           << "\n\tPlease enter your username and press enter:\t";
    //Loop that runs while checking the users name
    while(true)
    {
-       std::cout << "\n\t\tWelcome to the bank of Chas"
-           << "\n\t===================================\n"
-           << "\n\tPlease enter your username and press enter:\t";
        std::cin >> userInputName;
 
        //Loop that runs and checks if the username input matches an existing username
