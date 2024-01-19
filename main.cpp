@@ -18,7 +18,7 @@ User &logIn(User users[])
        //Loop that runs and checks if the username input matches an existing username
        for (int i = 0; i<5;i++)
        {
-           //check the pincode of the user
+
            if (userInputName==users[i].getUserName())
            {
                std::cout << "\n\tHello " << users[i].getUserName() << " please enter your pincode\n\tyou have"
@@ -92,7 +92,8 @@ int main() {
     {
         //create an object that points to the logged in user
         User activeUser = logIn(users);
-        std::cout << "\n\tHello " << activeUser.getUserName() << "\n";
+        std::cout << "\n\tHello again " << activeUser.getUserName() << std::endl;
+
         break;
     }   
 }

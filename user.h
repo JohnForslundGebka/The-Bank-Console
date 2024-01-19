@@ -40,7 +40,7 @@ public:
 
     unsigned int getPinCode() {return pinCode;};
 
-
+   //print out all users accounts
     void printAllAccounts()
     {
         for (int i = 0; i < userAccounts.size(); i++)
@@ -60,17 +60,18 @@ public:
         
         printAllAccounts();
 
-        std::cout << "\nMata in vilket konto du vill föra över från: ";
+        std::cout << "\n\tMata in vilket konto du vill föra över från:\t ";
         std::cin >> from;
-        std::cout << "\nMata in vilket konto du vill föra över till: ";
+        std::cout << "\n\tMata in vilket konto du vill föra över till:\t ";
         std::cin >> to;
-        std::cout << "\nHur mycket ";
+        std::cout << "\n\tHur mycket:\t ";
         std::cin >> amount;
 
         from -= 1; 
         to -= 1; 
 
-        if (userAccounts[from].getAccountBalance() < amount){
+        if (userAccounts[from].getAccountBalance() < amount)
+        {
             std::cout << "\nOmöjlig transaktion!";
         } else {
             userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
