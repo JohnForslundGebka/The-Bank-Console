@@ -1,28 +1,6 @@
 #include <iostream>
 #include <vector>
 
-//Class that hold the information about a account
-class Account
-{
-
-private:
-    std::string accountName;
-    std::string currency;
-    double accountBalance;
-    
-
-public:
-    Account(std::string name, std::string curr, double balance)
-    {
-        accountName = name;
-        currency = curr;
-        accountBalance = balance;
-        
-    }
-
-
-
-};
 
 
 //class for user
@@ -33,9 +11,9 @@ private:
 
     std::string userName;
     int pinCode;
-    std::vector<Account> userAccounts;                         //vector that contains the users accounts
+    std::vector<Account> userAccounts;//vector that contains the users accounts
 public:
-    User () : userName(""), pinCode(0) {};                     //Default constructor
+    User () : userName(""), pinCode(0) {};//Default constructor
 
     //Constructor for initializing object with username and pin code.
     User (std::string _username, int _pinCode) :  userName(std::move(_username)), pinCode(_pinCode) {}
