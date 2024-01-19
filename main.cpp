@@ -3,7 +3,7 @@
 #include "user.h"
 
 //function that handles the login and pin validation
-User & logIn(User users[])
+User &logIn(User users[])
 {
    std::string userInputName;
    int userInputPinCode;
@@ -43,23 +43,57 @@ User & logIn(User users[])
        std::cout << "\n\tUser not found. Please try again:\t";
    }
 }
+
+// This function is called once in the beginning of the program to create and fill all users acounts. 
+void fillAccounts(User _users[])
+{
+    _users[0].fillAccountData("sparkonto", 150, "KR");
+    _users[0].fillAccountData("Lönekonto", 200, "KR");
+
+    _users[1].fillAccountData("sparkonto", 150, "KR");
+    _users[1].fillAccountData("Lönekonto", 200, "KR");
+    _users[1].fillAccountData("skitkonto", 200, "KR");
+
+    _users[2].fillAccountData("sparkonto", 150, "KR");
+    _users[2].fillAccountData("Lönekonto", 200, "KR");
+    _users[2].fillAccountData("skitkonto", 200, "KR");
+    _users[2].fillAccountData("skitkonto", 200, "KR");
+
+    _users[3].fillAccountData("sparkonto", 150, "KR");
+    _users[3].fillAccountData("Lönekonto", 200, "KR");
+    _users[3].fillAccountData("skitkonto", 200, "KR");
+    _users[3].fillAccountData("skitkonto", 200, "KR");
+    _users[3].fillAccountData("skitkonto", 200, "KR");
+
+    _users[4].fillAccountData("sparkonto", 150, "KR");
+    _users[4].fillAccountData("Lönekonto", 200, "KR");
+    _users[4].fillAccountData("skitkonto", 200, "KR");
+    _users[4].fillAccountData("skitkonto", 200, "KR");
+    _users[4].fillAccountData("skitkonto", 200, "KR");
+    _users[4].fillAccountData("skitkonto", 200, "KR");
+
+}
+
 int main() {
 
     User users[5] =
-            {
-            {"Stefan", 1234},
-            { "John", 5678 },
-            {"Melker", 2345},
-            {"Sebastian", 3456},
-            {"Anas", 7890},
-             };
+    {
+        {"Stefan", 1234},
+        {"John", 5678 },
+        {"Melker", 2345},
+        {"Sebastian", 3456},
+        {"Anas", 7890},
+    };
+
+    //This functions fills all of the users acounts with data
+    fillAccounts(users);
 
     //main loop that runs the program
     while (true)
     {
         //create an object that points to the logged in user
         User activeUser = logIn(users);
-        std::cout << "\n\tHello again " << activeUser.getUserName();
+        std::cout << "\n\tHello " << activeUser.getUserName() << "\n";
         break;
-    }
+    }   
 }
