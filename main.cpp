@@ -2,16 +2,29 @@
 #include "account.h"
 #include "user.h"
 
-User & logIn()
+//function that handles the login and pin validation
+User & logIn(User users[])
 {
+   std::string userInputName;
+   int userInputPinCode;
+
+   while(true)
+   {
+       std::cin >> userInputName;
+
+       for (int i = 0; i<5;i++)
+       {
+           if (userInputName==users[i].)
+
+       }
+
+
+
+   }
 
 
 }
-
-
-
 int main() {
-
 
     User users[5] =
             {
@@ -22,7 +35,6 @@ int main() {
             {"Anas", 7890},
              };
 
-
     //main loop that runs the program
     while (true)
     {
@@ -32,10 +44,7 @@ int main() {
                   << "\n\tPlease enter your username and press enter:\t";
         break;
 
-
-
     }
-
 
 
 }
