@@ -46,30 +46,33 @@ User &logIn(User users[])
 // This function is called once in the beginning of the program to create and fill all users acounts. 
 void fillAccounts(User _users[])
 {
-    _users[0].fillAccountData("sparkonto", 150, "KR");
-    _users[0].fillAccountData("Lönekonto", 200, "KR");
+// User 0
+    _users[0].fillAccountData("Resekonto", 5000, "SEK");
+    _users[0].fillAccountData("Investeringssparkonto", 500, "EUR");
+    _users[0].fillAccountData("Fritidskonto", 6000, "DKK");
 
-    _users[1].fillAccountData("sparkonto", 150, "KR");
-    _users[1].fillAccountData("Lönekonto", 200, "KR");
-    _users[1].fillAccountData("skitkonto", 200, "KR");
+// User 1
+    _users[1].fillAccountData("Barnspar", 3000, "DKK");
+    _users[1].fillAccountData("Nödkonto", 700, "EUR");
 
-    _users[2].fillAccountData("sparkonto", 150, "KR");
-    _users[2].fillAccountData("Lönekonto", 200, "KR");
-    _users[2].fillAccountData("skitkonto", 200, "KR");
-    _users[2].fillAccountData("skitkonto", 200, "KR");
+// User 2
+    _users[2].fillAccountData("Huslån", 100000, "SEK");
+    _users[2].fillAccountData("Bilsparkonto", 15000, "DKK");
+    _users[2].fillAccountData("Julsparkonto", 1000, "EUR");
+    _users[2].fillAccountData("Presentkonto", 4500, "SEK");
+    _users[2].fillAccountData("Teknikspar", 20000, "DKK");
 
-    _users[3].fillAccountData("sparkonto", 150, "KR");
-    _users[3].fillAccountData("Lönekonto", 200, "KR");
-    _users[3].fillAccountData("skitkonto", 200, "KR");
-    _users[3].fillAccountData("skitkonto", 200, "KR");
-    _users[3].fillAccountData("skitkonto", 200, "KR");
+// User 3
+    _users[3].fillAccountData("Matkonto", 8000, "DKK");
+    _users[3].fillAccountData("Renoveringsfond", 1000, "EUR");
 
-    _users[4].fillAccountData("sparkonto", 150, "KR");
-    _users[4].fillAccountData("Lönekonto", 200, "KR");
-    _users[4].fillAccountData("skitkonto", 200, "KR");
-    _users[4].fillAccountData("skitkonto", 200, "KR");
-    _users[4].fillAccountData("skitkonto", 200, "KR");
-    _users[4].fillAccountData("skitkonto", 200, "KR");
+// User 4
+    _users[4].fillAccountData("Pensionspar", 40000, "EUR");
+    _users[4].fillAccountData("Drömprojekt", 25000, "SEK");
+    _users[4].fillAccountData("Utbildningsfond", 15000, "DKK");
+    _users[4].fillAccountData("Hobbykonto", 7000, "EUR");
+    _users[4].fillAccountData("Klädkonto", 5000, "SEK");
+    _users[4].fillAccountData("Samlarkonto", 3000, "DKK");
 
 }
 
