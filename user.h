@@ -169,8 +169,8 @@ public:
                 userAccounts[whichAcountHasCurrency].setAccountBalance(userAccounts[whichAcountHasCurrency].getAccountBalance() + newAmount);
             } else
             {
-                std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account";
-                userAccounts.push_back(Account((userInputString + " Konto"), newAmount, userInputString));
+                std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account..." << "\n\tAccount created! Money transfered!\n";
+                userAccounts.push_back(Account((userInputString + " Account"), newAmount, userInputString));
                 userAccounts[chosenAccount].setAccountBalance(
                         userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
             }
