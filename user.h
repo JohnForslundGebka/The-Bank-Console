@@ -94,8 +94,9 @@ public:
 
         if (userAccounts[from].getAccountBalance() < amount)
         {
-            std::cout << "\nOmöjlig transaktion!";
-        } else {
+            std::cout << "\nERROR! Unpossible transaction!";
+        } else 
+        {
             userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
             userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + amount);
         }  
@@ -160,11 +161,9 @@ public:
             //if user has a account with the right currency, do the transfer
             if (foundCurrency)
             {
-                userAccounts[chosenAccount].setAccountBalance(
-                        userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
+                userAccounts[chosenAccount].setAccountBalance(userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
 
-                userAccounts[whichAcountHasCurrency].setAccountBalance(
-                        userAccounts[whichAcountHasCurrency].getAccountBalance() + newAmount);
+                userAccounts[whichAcountHasCurrency].setAccountBalance(userAccounts[whichAcountHasCurrency].getAccountBalance() + newAmount);
             } else
             {
                 std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account";
@@ -172,13 +171,5 @@ public:
             }
             return;
         }
-
     }
-
-
 };
-
-
-
-
-

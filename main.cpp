@@ -1,13 +1,15 @@
 #include <iostream>
 #include "account.h"
 #include "user.h"
+#include <string>
 
-void clearScreen() {
-#if defined(_WIN32) || defined(_WIN64)
-    std::system("cls");
-#else
-    std::system("clear");
-#endif
+void clearScreen() 
+{
+    #if defined(_WIN32) || defined(_WIN64)
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
 }
 
 //function that handles the login and pin validation
@@ -60,7 +62,6 @@ enum menuSelection
     LOG_OUT = 4,
 };
 
-
 // This function is called once in the beginning of the program to create and fill all users acounts. 
 void fillAccounts(User _users[])
 {
@@ -94,7 +95,6 @@ void fillAccounts(User _users[])
 
 }
 
-
 void menu(User &activeUser)
 {
     int menuChoice;
@@ -121,7 +121,6 @@ void menu(User &activeUser)
             }
             break;
 
-
         case TRANSFER :
             activeUser.transfer();
             std::cout << "\n\tPress enter to exit to main menu";
@@ -132,7 +131,6 @@ void menu(User &activeUser)
                 menu(activeUser);
             }
             break;
-
 
         case EXCHANGE :
             activeUser.converter();
@@ -152,11 +150,11 @@ void menu(User &activeUser)
         default:
             std::cout << "\n\tERROR wrong input";
             break;
-
     }
 }
 
-int main() {
+int main() 
+{
 
     User users[5] =
     {
@@ -175,6 +173,5 @@ int main() {
         //create an object that points to the logged in user
         User activeUser = logIn(users);
         menu(activeUser);
-
     }   
 }
