@@ -168,6 +168,8 @@ public:
             {
                 std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account";
                 userAccounts.push_back(Account((userInputString + " Konto"), newAmount, userInputString));
+                userAccounts[chosenAccount].setAccountBalance(
+                        userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
             }
             return;
         }
