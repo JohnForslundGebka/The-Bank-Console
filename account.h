@@ -26,7 +26,7 @@ public:
 
     void printAccount()
     {
-        std::cout << ".\tAccount name: " <<  accountName << "\tBalance: " << accountBalance << " " << currency << "\n";
+        std::cout << ".\t" <<  accountName << "\tBalance: " << accountBalance << " " << currency << "\n";
     }
 
     double getAccountBalance() {return accountBalance;}

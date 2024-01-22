@@ -2,6 +2,43 @@
 #include <vector>
 #include <cctype>
 
+double getConversionRate(const std::string& fromCurrency, const std::string& toCurrency)
+{
+    std::map<std::pair<std::string, std::string>, double> currencyConverter;
+
+    // Fill the map with currency conversion rates
+    currencyConverter[{"SEK", "NOK"}] = 1.0;
+    currencyConverter[{"SEK", "DKK"}] = 0.65;
+    currencyConverter[{"SEK", "EUR"}] = 0.088;
+    currencyConverter[{"SEK", "USD"}] = 0.096;
+    currencyConverter[{"SEK", "RSD"}] = 10.26;
+    currencyConverter[{"DKK", "NOK"}] = 1.53;
+    currencyConverter[{"DKK", "SEK"}] = 1.53;
+    currencyConverter[{"DKK", "EUR"}] = 0.13;
+    currencyConverter[{"DKK", "USD"}] = 0.15;
+    currencyConverter[{"DKK", "RSD"}] = 15.69;
+    currencyConverter[{"EUR", "NOK"}] = 11.43;
+    currencyConverter[{"EUR", "SEK"}] = 11.4;
+    currencyConverter[{"EUR", "DKK"}] = 7.46;
+    currencyConverter[{"EUR", "USD"}] = 1.09;
+    currencyConverter[{"EUR", "RSD"}] = 117.21;
+    currencyConverter[{"USD", "NOK"}] = 10.46;
+    currencyConverter[{"USD", "SEK"}] = 10.46;
+    currencyConverter[{"USD", "DKK"}] = 6.84;
+    currencyConverter[{"USD", "EUR"}] = 0.92;
+    currencyConverter[{"USD", "RSD"}] = 107.38;
+    currencyConverter[{"RSD", "NOK"}] = 0.097;
+    currencyConverter[{"RSD", "SEK"}] = 0.097;
+    currencyConverter[{"RSD", "DKK"}] = 0.064;
+    currencyConverter[{"RSD", "EUR"}] = 0.0085;
+    currencyConverter[{"RSD", "USD"}] = 0.0093;
+    currencyConverter[{"NOK", "SEK"}] = 0.99;
+    currencyConverter[{"NOK", "DKK"}] = 0.65;
+    currencyConverter[{"NOK", "EUR"}] = 0.087;
+    currencyConverter[{"NOK", "USD"}] = 0.095;
+
+    return currencyConverter[{fromCurrency, toCurrency}];
+}
 
 //class for user
 class User
@@ -18,23 +55,6 @@ public:
     //Constructor for initializing object with username and pin code.
     User (std::string _username, int _pinCode) :  userName(std::move(_username)), pinCode(_pinCode) {}
     
-
-    void createNewAccount()
-    {
-        std::string accountName;
-        std::string currency;
-        double amountOnAccount;
-
-        std::cout << "\nMata in namn på ditt nya konto: ";
-        std::cin >> accountName;
-        std::cout << "\nVad är beloppet på ditt nya konto: ";
-        std::cin >> amountOnAccount;
-        std::cout << "\nVilken valuta skall ditt nya konto ha? (exempel KR eller USD)";
-        std::cin >> currency;
-
-        userAccounts.push_back(Account(accountName, amountOnAccount, currency));
-    }
-
 
     const std::string & getUserName() {return userName;};
 
@@ -91,6 +111,7 @@ public:
 
     void converter()
     {
+        //create variables that will be used
         int chosenAccount;
         char yesOrNo;
         double amountToExchange;
@@ -98,13 +119,7 @@ public:
         std::string userInputString;
         bool foundCurrency = false;
 
-        std::map<std::pair<std::string, std::string>, double> currencyConverter;
-        currencyConverter[{"SEK", "DKK"}] = 0.65;
-        currencyConverter[{"SEK", "EUR"}] = 0.088;
-        currencyConverter[{"DKK", "SEK"}] = 1.53;
-        currencyConverter[{"DKK", "EUR"}] = 0.13;
-        currencyConverter[{"EUR", "SEK"}] = 11.41;
-        currencyConverter[{"EUR", "DKK"}] = 7.46;
+
 
         std::cout << "\n\tChoose which account you want to exchange money from\n";
         printAllAccounts();
@@ -123,8 +138,8 @@ public:
         for (char &c: userInputString)
             c = std::toupper(c);
 
-        //calculaate the new amount
-        newAmount = amountToExchange * (currencyConverter[{userAccounts[chosenAccount].getCurrency(), userInputString}]);
+        //calculate the new amount
+        newAmount = amountToExchange * (getConversionRate(userAccounts[chosenAccount].getCurrency(), userInputString));
 
         //checks if the user accepts the exchange
         std::cout << "\n\tFor your " << amountToExchange << userAccounts[chosenAccount].getCurrency() << " you will get "
@@ -143,15 +158,17 @@ public:
                     break;
                 }
 
+            //if user has a account with the right currency, do the transfer
             if (foundCurrency) {
                 userAccounts[chosenAccount].setAccountBalance(
                         userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
+
                 userAccounts[whichAcountHasCurrency].setAccountBalance(
                         userAccounts[whichAcountHasCurrency].getAccountBalance() + newAmount);
-            } else {
+            } else
+            {
                 std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account";
                 userAccounts.push_back(Account((userInputString + " Konto"), newAmount, userInputString));
-
             }
             return;
         }

@@ -86,7 +86,6 @@ int main() {
         {"Sebastian", 3456},
         {"Anas", 7890},
     };
-
     //This functions fills all of the users acounts with data
     fillAccounts(users);
 
