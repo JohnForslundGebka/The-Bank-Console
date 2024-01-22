@@ -2,6 +2,14 @@
 #include "account.h"
 #include "user.h"
 
+void clearScreen() {
+#if defined(_WIN32) || defined(_WIN64)
+    std::system("cls");
+#else
+    std::system("clear");
+#endif
+}
+
 //function that handles the login and pin validation
 User &logIn(User users[])
 {
@@ -102,11 +110,13 @@ void menu(User &activeUser)
     switch (menuChoice)
     {
         case SEE_ACOUNTS :
+            clearScreen();
             activeUser.printAllAccounts();
             std::cout << "\n\tPress enter to exit to main menu";
             std::getline(std::cin, input);
             if (std::cin.ignore(256,'\n'))
             {
+                clearScreen();
                 menu(activeUser);
             }
             break;
@@ -118,6 +128,7 @@ void menu(User &activeUser)
             std::getline(std::cin, input);
             if (std::cin.ignore(256,'\n'))
             {
+                clearScreen();
                 menu(activeUser);
             }
             break;
@@ -129,11 +140,13 @@ void menu(User &activeUser)
             std::getline(std::cin, input);
             if (std::cin.ignore(256,'\n'))
             {
+                clearScreen();
                 menu(activeUser);
             }
             break;
 
         case LOG_OUT :
+            clearScreen();
             return;
 
         default:
