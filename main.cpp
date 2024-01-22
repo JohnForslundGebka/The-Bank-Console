@@ -110,13 +110,13 @@ void menu(User &activeUser)
     switch (menuChoice)
     {
         case SEE_ACOUNTS :
-            clearScreen();
+            //clearScreen();
             activeUser.printAllAccounts();
             std::cout << "\n\tPress enter to exit to main menu";
             std::getline(std::cin, input);
             if (std::cin.ignore(256,'\n'))
             {
-                clearScreen();
+                //clearScreen();
                 menu(activeUser);
             }
             break;
@@ -127,7 +127,7 @@ void menu(User &activeUser)
             std::getline(std::cin, input);
             if (std::cin.ignore(256,'\n'))
             {
-                clearScreen();
+                //clearScreen();
                 menu(activeUser);
             }
             break;
@@ -138,13 +138,13 @@ void menu(User &activeUser)
             std::getline(std::cin, input);
             if (std::cin.ignore(256,'\n'))
             {
-                clearScreen();
+                //clearScreen();
                 menu(activeUser);
             }
             break;
 
         case LOG_OUT :
-            clearScreen();
+            //clearScreen();
             return;
 
         default:

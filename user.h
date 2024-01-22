@@ -78,28 +78,31 @@ public:
     {
         int from;
         int to;
+        std::string tocurr;
+        std::string fromcurr;
         double amount;
-        
         printAllAccounts();
 
-        std::cout << "\n\tMata in vilket konto du vill föra över från:\t ";
+        std::cout << "\n\tSelect from which account you want to make transfer:\t ";
         std::cin >> from;
-        std::cout << "\n\tMata in vilket konto du vill föra över till:\t ";
+        std::cout << "\n\tSelect to which account you want to make transfer:\t ";
         std::cin >> to;
-        std::cout << "\n\tHur mycket:\t ";
+        jump:
+        std::cout << "\n\tHow much:\t ";
         std::cin >> amount;
-
         from -= 1; 
         to -= 1; 
-
+        tocurr = userAccounts[to].getCurrency();
+        fromcurr = userAccounts[from].getCurrency();
+        double fixamount = getConversionRate(fromcurr, tocurr) * amount;
         if (userAccounts[from].getAccountBalance() < amount)
         {
-            std::cout << "\nERROR! Unpossible transaction!";
-        } else 
-        {
-            userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
-            userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + amount);
-        }  
+            std::cout << "\n\tERROR! Unpossible transaction! ---- Try diffrent amount!";
+            goto jump;
+        }
+        userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
+        userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + fixamount);
+        std::cout << "\tTransaction completed!\n";
     }
 
     // This function is used for accessing the private member vector "userAccounts" and initialize
