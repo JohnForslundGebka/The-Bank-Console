@@ -43,6 +43,7 @@ User &logIn(User users[])
    }
 }
 
+//enum for menu choice
 enum menuSelection
 {
     SEE_ACOUNTS = 1,
@@ -85,6 +86,60 @@ void fillAccounts(User _users[])
 
 }
 
+
+void menu(User &activeUser)
+{
+    int menuChoice;
+    std::string input;
+    std::cout << "\n\t" << activeUser.getUserName() << "s main menu " << std::endl;
+    std::cout << "\t1.   See your accounts and balance\n"
+              << "\t2.   Transfer money\n"
+              << "\t3.   Exchange money\n"
+              << "\t4.   Log out\n"
+              << "\t:";
+    std::cin >> menuChoice;
+
+    switch (menuChoice)
+    {
+        case SEE_ACOUNTS :
+            activeUser.printAllAccounts();
+            std::cout << "\n\tPress enter to exit to main menu";
+            std::getline(std::cin, input);
+            if (std::cin.ignore(256,'\n'))
+            {
+                menu(activeUser);
+            }
+            break;
+
+
+        case TRANSFER :
+            activeUser.transfer();
+            break;
+
+        case EXCHANGE :
+            activeUser.converter();
+            break;
+
+        case LOG_OUT :
+            return;
+
+        default:
+            std::cout << "\n\tERROR wrong input";
+            break;
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
 int main() {
 
     User users[5] =
@@ -98,17 +153,14 @@ int main() {
     //This functions fills all of the users acounts with data
     fillAccounts(users);
 
+
+
     //main loop that runs the program
     while (true)
     {
         //create an object that points to the logged in user
         User activeUser = logIn(users);
-        std::cout << "\n\tHello " << activeUser.getUserName() << std::endl;
-
-
-
-
-
+        menu(activeUser);
 
     }   
 }
