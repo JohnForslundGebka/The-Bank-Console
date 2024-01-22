@@ -43,6 +43,15 @@ User &logIn(User users[])
    }
 }
 
+enum menuSelection
+{
+    SEE_ACOUNTS = 1,
+    TRANSFER = 2,
+    EXCHANGE = 3,
+    LOG_OUT = 4,
+};
+
+
 // This function is called once in the beginning of the program to create and fill all users acounts. 
 void fillAccounts(User _users[])
 {
@@ -96,10 +105,10 @@ int main() {
         User activeUser = logIn(users);
         std::cout << "\n\tHello " << activeUser.getUserName() << std::endl;
 
-        activeUser.converter();
 
-        activeUser.printAllAccounts();
 
-        break;
+
+
+
     }   
 }
