@@ -4,18 +4,6 @@
 #include <utility>
 #include <map>
 
-void converter()
-{
-    std::map<std::pair<std::string, std::string>, double> currencyConverter;
-    currencyConverter[{"SEK", "DKK"}] = 0.65;
-    currencyConverter[{"SEK", "USD"}] = 0.096;
-    currencyConverter[{"DKK", "SEK"}] = 1.53;
-    currencyConverter[{"DKK", "USD"}] = 0.15;
-    currencyConverter[{"USD", "SEK"}] = 10.46;
-    currencyConverter[{"USD", "DKK"}] = 6.84;
-
-
-}
 
 //Class that hold the information about a account
 class Account
@@ -43,6 +31,8 @@ public:
 
     double getAccountBalance() {return accountBalance;}
     void setAccountBalance(double _newBalance) {accountBalance = _newBalance;}
+
+    std::string getCurrency() {return currency;}
     
 
 

@@ -97,6 +97,8 @@ int main() {
         User activeUser = logIn(users);
         std::cout << "\n\tHello again " << activeUser.getUserName() << std::endl;
 
+        activeUser.converter();
+
         break;
     }   
 }
