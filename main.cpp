@@ -31,8 +31,8 @@ User &logIn(User users[])
 
            if (userInputName==users[i].getUserName())
            {
-               std::cout << "\n\tHello " << users[i].getUserName() << " please enter your pincode\n\tyou have"
-                         << " three attempts:\t";
+               std::cout << "\n\tHello " << users[i].getUserName() << " please enter your pincode\n\tYou have"
+                         << " 3 attempts:\t";
                for (int j = 0; j < 3; j++)     //for loop that checks the pincode
                {
                    std::cin >> userInputPinCode;
@@ -148,7 +148,7 @@ void menu(User &activeUser)
             return;
 
         default:
-            std::cout << "\n\tERROR wrong input";
+            std::cout << "\n\tERROR! Wrong input";
             break;
     }
 }
