@@ -145,19 +145,21 @@ public:
         std::cin >> yesOrNo;
 
         //continues if user chooses yes
-        if (yesOrNo=='y' || yesOrNo=='Y') {
+        if (yesOrNo=='y' || yesOrNo=='Y')
+        {
             int whichAcountHasCurrency;
 
             //loops through all the account to see if the currency exists on users account
             for (int i = 0; i < userAccounts.size(); i++)
-                if (userAccounts[i].getCurrency() == userInputString) {
+                if (userAccounts[i].getCurrency() == userInputString)
+                {
                     foundCurrency = true;
                     whichAcountHasCurrency = i;
                     break;
                 }
-
             //if user has a account with the right currency, do the transfer
-            if (foundCurrency) {
+            if (foundCurrency)
+            {
                 userAccounts[chosenAccount].setAccountBalance(
                         userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
 

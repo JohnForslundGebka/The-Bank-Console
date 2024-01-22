@@ -114,10 +114,23 @@ void menu(User &activeUser)
 
         case TRANSFER :
             activeUser.transfer();
+            std::cout << "\n\tPress enter to exit to main menu";
+            std::getline(std::cin, input);
+            if (std::cin.ignore(256,'\n'))
+            {
+                menu(activeUser);
+            }
             break;
+
 
         case EXCHANGE :
             activeUser.converter();
+            std::cout << "\n\tPress enter to exit to main menu";
+            std::getline(std::cin, input);
+            if (std::cin.ignore(256,'\n'))
+            {
+                menu(activeUser);
+            }
             break;
 
         case LOG_OUT :
@@ -128,17 +141,7 @@ void menu(User &activeUser)
             break;
 
     }
-
-
 }
-
-
-
-
-
-
-
-
 
 int main() {
 
@@ -152,8 +155,6 @@ int main() {
     };
     //This functions fills all of the users acounts with data
     fillAccounts(users);
-
-
 
     //main loop that runs the program
     while (true)
