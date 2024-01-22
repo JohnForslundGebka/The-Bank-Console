@@ -125,25 +125,28 @@ public:
 
         printAllAccounts();
         std::cout << "\n\tChoose which account you want to exchange money from\t:";
-
         std::cin >> chosenAccount;
         chosenAccount--;
-
-        std::cout << "\n\tHow much money do you wish to exchange?\t:";
-        std::cin >> amountToExchange;
 
         std::cout << "\n\tWhich currency do you whish to exchange to?\n\t"
                   <<  "Write your answer and press enter\n\t"
                   <<  "SEK\tUSD\tDKK\tEUR\tNOK\tRSD\t:";
         std::cin >> userInputString;
-
         //convert to input string to all caps
         for (char &c: userInputString)
             c = std::toupper(c);
 
+        jump:
+        std::cout << "\n\tHow much money do you wish to exchange?\t:";
+        std::cin >> amountToExchange;
+
         //calculate the new amount
         newAmount = amountToExchange * (getConversionRate(userAccounts[chosenAccount].getCurrency(), userInputString));
-
+        if(amountToExchange > userAccounts[chosenAccount].getAccountBalance())
+        {
+            std::cout << "\n\tERROR! Unpossible transaction! --- Try with another amount!\n";
+            goto jump;
+        }
         //checks if the user accepts the exchange
         std::cout << "\n\tFor your " << amountToExchange << userAccounts[chosenAccount].getCurrency() << " you will get "
                   << newAmount << " " << userInputString << ". Do you accept this exchange? y/n \t:";
@@ -172,8 +175,7 @@ public:
             {
                 std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account..." << "\n\tAccount created! Money transfered!\n";
                 userAccounts.push_back(Account((userInputString + " Account"), newAmount, userInputString));
-                userAccounts[chosenAccount].setAccountBalance(
-                        userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
+                userAccounts[chosenAccount].setAccountBalance(userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
             }
             return;
         }
