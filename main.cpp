@@ -47,32 +47,32 @@ User &logIn(User users[])
 void fillAccounts(User _users[])
 {
 // User 0
-    _users[0].fillAccountData("Resekonto", 5000, "SEK");
-    _users[0].fillAccountData("Investeringssparkonto", 500, "EUR");
-    _users[0].fillAccountData("Fritidskonto", 6000, "DKK");
+    _users[0].fillAccountData("Travel", 5000, "SEK");
+    _users[0].fillAccountData("Investment", 500, "EUR");
+    _users[0].fillAccountData("Free time", 6000, "DKK");
 
 // User 1
-    _users[1].fillAccountData("Barnspar", 3000, "DKK");
-    _users[1].fillAccountData("Nödkonto", 700, "EUR");
+    _users[1].fillAccountData("Children", 3000, "DKK");
+    _users[1].fillAccountData("Emergency", 700, "EUR");
 
 // User 2
-    _users[2].fillAccountData("Huslån", 100000, "SEK");
-    _users[2].fillAccountData("Bilsparkonto", 15000, "DKK");
-    _users[2].fillAccountData("Julsparkonto", 1000, "EUR");
-    _users[2].fillAccountData("Presentkonto", 4500, "SEK");
-    _users[2].fillAccountData("Teknikspar", 20000, "DKK");
+    _users[2].fillAccountData("House", 100000, "SEK");
+    _users[2].fillAccountData("Car saving", 15000, "DKK");
+    _users[2].fillAccountData("Christmas", 1000, "EUR");
+    _users[2].fillAccountData("Presents", 4500, "SEK");
+    _users[2].fillAccountData("Tech", 20000, "DKK");
 
 // User 3
-    _users[3].fillAccountData("Matkonto", 8000, "DKK");
-    _users[3].fillAccountData("Renoveringsfond", 1000, "EUR");
+    _users[3].fillAccountData("Food", 8000, "DKK");
+    _users[3].fillAccountData("Renovering", 1000, "EUR");
 
 // User 4
-    _users[4].fillAccountData("Pensionspar", 40000, "EUR");
-    _users[4].fillAccountData("Drömprojekt", 25000, "SEK");
-    _users[4].fillAccountData("Utbildningsfond", 15000, "DKK");
-    _users[4].fillAccountData("Hobbykonto", 7000, "EUR");
-    _users[4].fillAccountData("Klädkonto", 5000, "SEK");
-    _users[4].fillAccountData("Samlarkonto", 3000, "DKK");
+    _users[4].fillAccountData("Pension", 40000, "EUR");
+    _users[4].fillAccountData("Dream project", 25000, "SEK");
+    _users[4].fillAccountData("Study fond", 15000, "DKK");
+    _users[4].fillAccountData("Hobby", 7000, "EUR");
+    _users[4].fillAccountData("Clothes", 5000, "SEK");
+    _users[4].fillAccountData("Collection", 3000, "DKK");
 
 }
 

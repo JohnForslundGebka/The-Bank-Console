@@ -119,8 +119,6 @@ public:
         std::string userInputString;
         bool foundCurrency = false;
 
-
-
         std::cout << "\n\tChoose which account you want to exchange money from\n";
         printAllAccounts();
         std::cin >> chosenAccount;
