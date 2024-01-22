@@ -94,7 +94,7 @@ int main() {
     {
         //create an object that points to the logged in user
         User activeUser = logIn(users);
-        std::cout << "\n\tHello again " << activeUser.getUserName() << std::endl;
+        std::cout << "\n\tHello " << activeUser.getUserName() << std::endl;
 
         activeUser.converter();
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <utility>
 #include <map>
+#include <iomanip>
 
 
 //Class that hold the information about a account
@@ -26,7 +27,9 @@ public:
 
     void printAccount()
     {
-        std::cout << ".\t" <<  accountName << "\tBalance: " << accountBalance << " " << currency << "\n";
+        const int nameWidth = 20;
+        std::cout << "." << std::left << std::setw(nameWidth) << accountName
+                  << "Balance: " << accountBalance << " " << currency;
     }
 
     double getAccountBalance() {return accountBalance;}

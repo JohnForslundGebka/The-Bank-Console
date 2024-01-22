@@ -60,19 +60,18 @@ public:
 
     int getPinCode() {return pinCode;};
 
+
    //print out all users accounts
-    void printAllAccounts()
-    {
-        for (int i = 0; i < userAccounts.size(); i++)
-        {
-            std::cout << "\n";
-            std::cout << i + 1;
-            userAccounts[i].printAccount();
-
-        }
-
-        std::cout << "\n\t:";
-    }
+   void printAllAccounts()
+   {
+       std::cout << "\n\t=========ACCOUNT STATUS=========:\n";
+       for (int i = 0; i < userAccounts.size(); i++)
+       {
+           std::cout << "\n\t" << i + 1;
+           userAccounts[i].printAccount();
+       }
+       std::cout << std::endl;
+   }
 
     // Promts the user for a transfer of money from one acount to another.
     void transfer()
@@ -119,8 +118,9 @@ public:
         std::string userInputString;
         bool foundCurrency = false;
 
-        std::cout << "\n\tChoose which account you want to exchange money from\n";
         printAllAccounts();
+        std::cout << "\n\tChoose which account you want to exchange money from\t:";
+
         std::cin >> chosenAccount;
         chosenAccount--;
 
@@ -129,7 +129,7 @@ public:
 
         std::cout << "\n\tWhich currency do you whish to exchange to?\n\t"
                   <<  "Write your answer and press enter\n\t"
-                  <<  "SEK\tUSD\tDKK\t:";
+                  <<  "SEK\tUSD\tDKK\tEUR\tNOK\tRSD\t:";
         std::cin >> userInputString;
 
         //convert to input string to all caps
