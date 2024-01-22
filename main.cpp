@@ -99,6 +99,8 @@ int main() {
 
         activeUser.converter();
 
+        activeUser.printAllAccounts();
+
         break;
     }   
 }

@@ -96,6 +96,7 @@ public:
         double amountToExchange;
         double newAmount;
         std::string userInputString;
+        bool foundCurrency = false;
 
         std::map<std::pair<std::string, std::string>, double> currencyConverter;
         currencyConverter[{"SEK", "DKK"}] = 0.65;
@@ -130,10 +131,30 @@ public:
                   << newAmount << " " << userInputString << ". Do you accept this exchange? y/n \t:";
         std::cin >> yesOrNo;
 
+        //continues if user chooses yes
+        if (yesOrNo=='y' || yesOrNo=='Y') {
+            int whichAcountHasCurrency;
 
+            //loops through all the account to see if the currency exists on users account
+            for (int i = 0; i < userAccounts.size(); i++)
+                if (userAccounts[i].getCurrency() == userInputString) {
+                    foundCurrency = true;
+                    whichAcountHasCurrency = i;
+                    break;
+                }
 
+            if (foundCurrency) {
+                userAccounts[chosenAccount].setAccountBalance(
+                        userAccounts[chosenAccount].getAccountBalance() - amountToExchange);
+                userAccounts[whichAcountHasCurrency].setAccountBalance(
+                        userAccounts[whichAcountHasCurrency].getAccountBalance() + newAmount);
+            } else {
+                std::cout << "\n\tYou have no account with " << userInputString << "\n\tCreating new account";
+                userAccounts.push_back(Account((userInputString + " Konto"), newAmount, userInputString));
 
-
+            }
+            return;
+        }
 
     }
 
