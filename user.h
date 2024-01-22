@@ -36,6 +36,7 @@ double getConversionRate(const std::string& fromCurrency, const std::string& toC
     currencyConverter[{"NOK", "DKK"}] = 0.65;
     currencyConverter[{"NOK", "EUR"}] = 0.087;
     currencyConverter[{"NOK", "USD"}] = 0.095;
+    currencyConverter[{"NOK", "RSD"}] = 10.25;
 
     return currencyConverter[{fromCurrency, toCurrency}];
 }
