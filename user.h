@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <cctype>
+#include <fstream>
+#include <sstream>
 
 double getConversionRate(const std::string& fromCurrency, const std::string& toCurrency)
 {
