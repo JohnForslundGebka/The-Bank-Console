@@ -8,44 +8,30 @@ double getConversionRate(const std::string& fromCurrency, const std::string& toC
 {
     std::map<std::pair<std::string, std::string>, double> currencyConverter;
 
-    // Fill the map with currency conversion rates
-    currencyConverter[{"SEK", "NOK"}] = 1.0;
-    currencyConverter[{"SEK", "DKK"}] = 0.65;
-    currencyConverter[{"SEK", "EUR"}] = 0.088;
-    currencyConverter[{"SEK", "USD"}] = 0.096;
-    currencyConverter[{"SEK", "RSD"}] = 10.26;
-    currencyConverter[{"SEK", "SEK"}] = 1.0;
-    currencyConverter[{"DKK", "NOK"}] = 1.53;
-    currencyConverter[{"DKK", "SEK"}] = 1.53;
-    currencyConverter[{"DKK", "EUR"}] = 0.13;
-    currencyConverter[{"DKK", "USD"}] = 0.15;
-    currencyConverter[{"DKK", "RSD"}] = 15.69;
-    currencyConverter[{"DKK", "DKK"}] = 1.0;
-    currencyConverter[{"EUR", "NOK"}] = 11.43;
-    currencyConverter[{"EUR", "SEK"}] = 11.4;
-    currencyConverter[{"EUR", "DKK"}] = 7.46;
-    currencyConverter[{"EUR", "USD"}] = 1.09;
-    currencyConverter[{"EUR", "RSD"}] = 117.21;
-    currencyConverter[{"EUR", "EUR"}] = 1.0;
-    currencyConverter[{"USD", "NOK"}] = 10.46;
-    currencyConverter[{"USD", "SEK"}] = 10.46;
-    currencyConverter[{"USD", "DKK"}] = 6.84;
-    currencyConverter[{"USD", "EUR"}] = 0.92;
-    currencyConverter[{"USD", "RSD"}] = 107.38;
-    currencyConverter[{"USD", "USD"}] = 1.0;
-    currencyConverter[{"RSD", "NOK"}] = 0.097;
-    currencyConverter[{"RSD", "SEK"}] = 0.097;
-    currencyConverter[{"RSD", "DKK"}] = 0.064;
-    currencyConverter[{"RSD", "EUR"}] = 0.0085;
-    currencyConverter[{"RSD", "USD"}] = 0.0093;
-    currencyConverter[{"RSD", "RSD"}] = 1.0;
-    currencyConverter[{"NOK", "SEK"}] = 0.99;
-    currencyConverter[{"NOK", "DKK"}] = 0.65;
-    currencyConverter[{"NOK", "EUR"}] = 0.087;
-    currencyConverter[{"NOK", "USD"}] = 0.095;
-    currencyConverter[{"NOK", "RSD"}] = 10.25;
-    currencyConverter[{"NOK", "NOK"}] = 1.0;
-    
+    //Create an import stream and link it to the proper file
+    std::ifstream file("conversion_rates.csv");
+    if (!file) {
+        std::cout << "\n\n\tERROR FILE COULD NOT BE OPEND!";   //write error if file could not be opend
+        return -1;
+    }
+    std::string line;
+    //loop that fills the map with data from the .cvs file
+    while (std::getline(file,line))
+    {
+        std::stringstream ss(line);
+        std::string from, to;
+        double rate;
+
+        std::getline(ss,from, ',');
+        std::getline(ss,to,',');
+        ss >> rate;
+
+        //add the rates to the map
+        currencyConverter[{from,to}] = rate;
+    }
+
+    file.close();  //close file
+
     return currencyConverter[{fromCurrency, toCurrency}];
 }
 
