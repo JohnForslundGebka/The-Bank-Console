@@ -33,6 +33,7 @@ double getConversionRate(const std::string& fromCurrency, const std::string& toC
 
     file.close();  //close file
 
+    
     return currencyConverter[{fromCurrency, toCurrency}];
 }
 
@@ -44,9 +45,9 @@ private:
 
     std::string userName;
     const int pinCode;
-    std::vector<Account> userAccounts;//vector that contains the users accounts
+    std::vector<Account> userAccounts;      //vector that contains the users accounts
 public:
-    User () : userName(""), pinCode(0) {};//Default constructor
+    User () : userName(""), pinCode(0) {};      //Default constructor
 
     //Constructor for initializing object with username and pin code.
     User (std::string _username, int _pinCode) :  userName(std::move(_username)), pinCode(_pinCode) {}
@@ -70,7 +71,8 @@ public:
    }
 
     // Promts the user for a transfer of money from one acount to another.
-    void transfer() {
+    void transfer() 
+    {
         int from;
         int to;
         std::string tocurr;
@@ -79,13 +81,15 @@ public:
         printAllAccounts();
 
         std::cout << "\n\tSelect from which account you want to make transfer:\t ";
-        std::cin >> from;
+        from = checkUserInput(userAccounts.size(), "Please enter a valid digit from the list of accounts:");
+
         std::cout << "\n\tSelect to which account you want to make transfer:\t ";
-        std::cin >> to;
+        to = checkUserInput(userAccounts.size(), "Please enter a valid digit from the list of accounts:");
+        
         while (true)
         {
             std::cout << "\n\tHow much:\t ";
-            std::cin >> amount;
+            amount = checkUserInput(99999, "Please enter a valid amount: ");
             from -= 1;
             to -= 1;
             tocurr = userAccounts[to].getCurrency();
@@ -99,7 +103,7 @@ public:
             }
             userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
             userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + fixamount);
-            std::cout << "\tTransaction completed!\n";
+            std::cout << "\tTransaction completed! Automatically converted currency.\n";
             return;
         }
     }
@@ -123,28 +127,36 @@ public:
 
         printAllAccounts();
         std::cout << "\n\tChoose which account you want to exchange money from\t:";
-        std::cin >> chosenAccount;
+
+        // Makes sure account choice input is valid
+        chosenAccount = checkUserInput(userAccounts.size(), "Please enter a valid account from the list of accounts: ");
         chosenAccount--;
 
-        std::cout << "\n\tWhich currency do you whish to exchange to?\n\t"
-                  <<  "Write your answer and press enter\n\t"
-                  <<  "SEK\tUSD\tDKK\tEUR\tNOK\tRSD\t:";
-        std::cin >> userInputString;
-        //convert to input string to all caps
-        for (char &c: userInputString)
-            c = std::toupper(c);
-
-        jump:
-        std::cout << "\n\tHow much money do you wish to exchange?\t:";
-        std::cin >> amountToExchange;
-
-        //calculate the new amount
-        newAmount = amountToExchange * (getConversionRate(userAccounts[chosenAccount].getCurrency(), userInputString));
-        if(amountToExchange > userAccounts[chosenAccount].getAccountBalance())
+        do
         {
-            std::cout << "\n\tERROR! Impossible transaction! --- Try with another amount!\n";
-            goto jump;
-        }
+            std::cout << "\n\tWhich currency do you whish to exchange to?\n\t"
+                    <<  "Write your answer and press enter\n\t"
+                    <<  "SEK\tUSD\tDKK\tEUR\tNOK\tRSD\t:";
+            userInputString = checkCurrencyInput();
+            
+
+            
+            std::cout << "\n\tHow much money do you wish to exchange?\t:";
+            amountToExchange = checkUserInput(99999, "Please enter a valid amount: ");  //Making sure input is correct
+
+            
+        
+            //calculate the new amount
+            newAmount = amountToExchange * (getConversionRate(userAccounts[chosenAccount].getCurrency(), userInputString));
+
+            if(amountToExchange > userAccounts[chosenAccount].getAccountBalance())
+            {
+                std::cout << "\n\tERROR! Impossible transaction! --- Try with another amount!\n";
+                continue;
+            }
+        } while (newAmount == 0);
+        
+        
         //checks if the user accepts the exchange
         std::cout << "\n\tFor your " << amountToExchange << userAccounts[chosenAccount].getCurrency() << " you will get "
                   << newAmount << " " << userInputString << ". Do you accept this exchange? y/n \t:";
