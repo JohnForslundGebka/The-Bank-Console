@@ -55,7 +55,7 @@ public:
 
     const std::string & getUserName() {return userName;}
     int getPinCode() {return pinCode;}
-    int getUserId() {return pinCode;}
+    int getUserId() {return userId;}
 
     void setUsername(std::string _username) {userName=_username;}
     void setPincode(int _pinCode) {pinCode =_pinCode;}

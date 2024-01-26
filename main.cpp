@@ -66,34 +66,25 @@ enum menuSelection
 // This function is called once in the beginning of the program to create and fill all users acounts. 
 void fillAccounts(User _users[])
 {
-// User 0
-    _users[0].fillAccountData("Travel", 5000, "SEK");
-    _users[0].fillAccountData("Investment", 500, "EUR");
-    _users[0].fillAccountData("Free time", 6000, "DKK");
 
-// User 1
-    _users[1].fillAccountData("Children", 3000, "DKK");
-    _users[1].fillAccountData("Emergency", 700, "EUR");
 
-// User 2
-    _users[2].fillAccountData("House", 100000, "SEK");
-    _users[2].fillAccountData("Car saving", 15000, "DKK");
-    _users[2].fillAccountData("Christmas", 1000, "EUR");
-    _users[2].fillAccountData("Presents", 4500, "SEK");
-    _users[2].fillAccountData("Tech", 20000, "DKK");
+    SQLite::Database db("bankDatabase.db");
 
-// User 3
-    _users[3].fillAccountData("Food", 8000, "DKK");
-    _users[3].fillAccountData("Renovering", 1000, "EUR");
-
-// User 4
-    _users[4].fillAccountData("Pension", 40000, "EUR");
-    _users[4].fillAccountData("Dream project", 25000, "SEK");
-    _users[4].fillAccountData("Study fond", 15000, "DKK");
-    _users[4].fillAccountData("Hobby", 7000, "EUR");
-    _users[4].fillAccountData("Clothes", 5000, "SEK");
-    _users[4].fillAccountData("Collection", 3000, "DKK");
-
+    for (int i = 0; i < 5; i++)
+    {
+       SQLite::Statement query(db, "SELECT account_name, balance, currency FROM accounts WHERE user_id = "+std::to_string(_users[i].getUserId()));
+        try
+        {
+              while (query.executeStep())
+              {
+                   _users[i].fillAccountData(query.getColumn(0),query.getColumn(1),query.getColumn(2));
+              }
+        }
+        catch (std::exception& e)
+            {
+                std::cout << "exception: " << e.what() << std::endl;
+           }
+    }
 }
 
 void menu(User &activeUser)
@@ -159,23 +150,24 @@ int main()
 
     // Open a database file
     SQLite::Database db("bankDatabase.db");
-
+    //create a query for all the users
     SQLite::Statement query(db, "SELECT * FROM users");
 
     //create five users
     User users[5] = {};
 
-    int userCounter;
-
+    //fill the five users with data from the database
      try
         {
+           int userCounter = 0;
+
            while (query.executeStep())
            {
-               
+                users[userCounter].setUsername(query.getColumn(0));
+                users[userCounter].setPincode(query.getColumn(1));
+                users[userCounter].setUserId(query.getColumn(2));
+                userCounter++;
            }
-
-
-
         }
      catch (std::exception& e)
          {
