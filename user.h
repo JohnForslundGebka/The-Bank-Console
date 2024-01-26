@@ -69,8 +69,7 @@ public:
    }
 
     // Promts the user for a transfer of money from one acount to another.
-    void transfer()
-    {
+    void transfer() {
         int from;
         int to;
         std::string tocurr;
@@ -82,22 +81,26 @@ public:
         std::cin >> from;
         std::cout << "\n\tSelect to which account you want to make transfer:\t ";
         std::cin >> to;
-        jump:
-        std::cout << "\n\tHow much:\t ";
-        std::cin >> amount;
-        from -= 1; 
-        to -= 1; 
-        tocurr = userAccounts[to].getCurrency();
-        fromcurr = userAccounts[from].getCurrency();
-        double fixamount = getConversionRate(fromcurr, tocurr) * amount;
-        if (userAccounts[from].getAccountBalance() < amount)
+        while (true)
         {
-            std::cout << "\n\tERROR! Unpossible transaction! ---- Try diffrent amount!";
-            goto jump;
+            std::cout << "\n\tHow much:\t ";
+            std::cin >> amount;
+            from -= 1;
+            to -= 1;
+            tocurr = userAccounts[to].getCurrency();
+            fromcurr = userAccounts[from].getCurrency();
+            double fixamount = getConversionRate(fromcurr, tocurr) * amount;
+            if (userAccounts[from].getAccountBalance() < amount)
+            {
+                std::cout << "\n\tERROR! Unpossible transaction! ---- Try diffrent amount!";
+                continue;
+
+            }
+            userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
+            userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + fixamount);
+            std::cout << "\tTransaction completed!\n";
+            return;
         }
-        userAccounts[from].setAccountBalance(userAccounts[from].getAccountBalance() - amount);
-        userAccounts[to].setAccountBalance(userAccounts[to].getAccountBalance() + fixamount);
-        std::cout << "\tTransaction completed!\n";
     }
 
     // This function is used for accessing the private member vector "userAccounts" and initialize
