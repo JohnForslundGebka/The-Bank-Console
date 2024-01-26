@@ -162,24 +162,28 @@ int main()
 
     SQLite::Statement query(db, "SELECT * FROM users");
 
+    //create five users
+    User users[5] = {};
+
+    int userCounter;
+
+     try
+        {
+           while (query.executeStep())
+           {
+               
+           }
 
 
 
+        }
+     catch (std::exception& e)
+         {
+             std::cout << "exception: " << e.what() << std::endl;
+        }
 
 
-    User users[5] =
-    {
-        {"Stefan", 1234},
-        {"John", 5678 },
-        {"Melker", 2345},
-        {"Sebastian", 3456},
-        {"Anas", 7890},
-    };
-
-
-
-
-    //This functions fills all of the users acounts with data
+     //This functions fills all of the users acounts with data
     fillAccounts(users);
 
     //main loop that runs the program

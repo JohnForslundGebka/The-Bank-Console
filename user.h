@@ -43,7 +43,7 @@ private:
 
 
     std::string userName;
-    const int pinCode;
+    int pinCode;
     std::vector<Account> userAccounts;//vector that contains the users accounts
     int userId;
 public:
@@ -53,9 +53,13 @@ public:
     User (std::string _username, int _pinCode, int _userId) :  userName(std::move(_username)), pinCode(_pinCode), userId(_userId) {}
     
 
-    const std::string & getUserName() {return userName;};
+    const std::string & getUserName() {return userName;}
+    int getPinCode() {return pinCode;}
+    int getUserId() {return pinCode;}
 
-    int getPinCode() {return pinCode;};
+    void setUsername(std::string _username) {userName=_username;}
+    void setPincode(int _pinCode) {pinCode =_pinCode;}
+    void setUserId(int _userId) {userId = _userId;}
 
 
    //print out all users accounts
