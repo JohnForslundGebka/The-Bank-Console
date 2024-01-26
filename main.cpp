@@ -2,6 +2,7 @@
 #include "account.h"
 #include "user.h"
 #include <string>
+#include <SQLiteCpp/SQLiteCpp.h>
 
 void clearScreen() 
 {
@@ -156,6 +157,16 @@ void menu(User &activeUser)
 int main() 
 {
 
+    // Open a database file
+    SQLite::Database db("bankDatabase.db");
+
+    SQLite::Statement query(db, "SELECT * FROM users");
+
+
+
+
+
+
     User users[5] =
     {
         {"Stefan", 1234},
@@ -164,6 +175,10 @@ int main()
         {"Sebastian", 3456},
         {"Anas", 7890},
     };
+
+
+
+
     //This functions fills all of the users acounts with data
     fillAccounts(users);
 

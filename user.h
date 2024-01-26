@@ -41,14 +41,16 @@ class User
 
 private:
 
+
     std::string userName;
     const int pinCode;
     std::vector<Account> userAccounts;//vector that contains the users accounts
+    int userId;
 public:
     User () : userName(""), pinCode(0) {};//Default constructor
 
     //Constructor for initializing object with username and pin code.
-    User (std::string _username, int _pinCode) :  userName(std::move(_username)), pinCode(_pinCode) {}
+    User (std::string _username, int _pinCode, int _userId) :  userName(std::move(_username)), pinCode(_pinCode), userId(_userId) {}
     
 
     const std::string & getUserName() {return userName;};
