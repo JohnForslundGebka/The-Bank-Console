@@ -1,7 +1,9 @@
 #include <iostream>
+#include "checkUserInput.h"
 #include "account.h"
 #include "user.h"
 #include <string>
+
 
 void clearScreen() 
 {
@@ -95,17 +97,23 @@ void fillAccounts(User _users[])
 
 }
 
+
+
 void menu(User &activeUser)
 {
     int menuChoice;
+
+    clearScreen(); 
     std::string input;
     std::cout << "\n\t" << activeUser.getUserName() << "s main menu " << std::endl;
     std::cout << "\t1.   See your accounts and balance\n"
               << "\t2.   Transfer money\n"
               << "\t3.   Exchange money\n"
               << "\t4.   Log out\n"
-              << "\t:";
-    std::cin >> menuChoice;
+              << "\tChoice: ";
+    
+    // Calls the input function making sure the user inputs a valid menu choice.
+    menuChoice = checkUserInput(4);
 
     switch (menuChoice)
     {

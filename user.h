@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 
+
 double getConversionRate(const std::string& fromCurrency, const std::string& toCurrency)
 {
     std::map<std::pair<std::string, std::string>, double> currencyConverter;
@@ -141,7 +142,7 @@ public:
         newAmount = amountToExchange * (getConversionRate(userAccounts[chosenAccount].getCurrency(), userInputString));
         if(amountToExchange > userAccounts[chosenAccount].getAccountBalance())
         {
-            std::cout << "\n\tERROR! Unpossible transaction! --- Try with another amount!\n";
+            std::cout << "\n\tERROR! Impossible transaction! --- Try with another amount!\n";
             goto jump;
         }
         //checks if the user accepts the exchange
