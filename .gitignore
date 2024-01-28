@@ -651,5 +651,9 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudio,clion,visualstudiocode,macos,windows
 
 .test.cpp
-
 .rooster.dSYM
+
+
+# Build files from VS and so on
+[Oo]ut/
+[B]uild/
