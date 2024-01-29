@@ -656,6 +656,6 @@ FodyWeavers.xsd
 
 # Build files from VS and so on
 [Oo]ut/
-[B]uild/
+[Bb]uild/
 .vscode/
 
