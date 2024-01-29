@@ -2,6 +2,7 @@
 #include <string>
 #include <SQLiteCpp/SQLiteCpp.h>
 #include "checkUserInput.h"
+#include "conversionRate.h"
 #include "account.h"
 #include "user.h"
 
