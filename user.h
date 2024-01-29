@@ -1,8 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cctype>
-#include <fstream>
-#include <sstream>
 
 //class for user
 class User
