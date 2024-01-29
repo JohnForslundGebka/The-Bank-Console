@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "checkUserInput.h"
-#include "conversionRate.h"
-#include "account.h"
-#include "user.h"
-#include "login.h"
-#include "fillData.h"
+#include "headerFiles/checkUserInput.h"
+#include "headerFiles/conversionRate.h"
+#include "headerFiles/account.h"
+#include "headerFiles/user.h"
+#include "headerFiles/login.h"
+#include "headerFiles/fillData.h"
 
 //Clears the console screen, different command if user has windows or mac
 void clearScreen() 
@@ -26,12 +26,12 @@ enum menuSelection
     EXCHANGE = 3,
     LOG_OUT = 4,
 };
-
+//prints the menu choices and asks for user input
 void menu(User &activeUser)
 {
     int menuChoice;
 
-    clearScreen(); 
+    clearScreen();    //clears the screen
     std::string input;
     std::cout << "\n\t" << activeUser.getUserName() << "s main menu " << std::endl;
     std::cout << "\t1.   See your accounts and balance\n"

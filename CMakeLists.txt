@@ -5,16 +5,17 @@ set(CMAKE_CXX_STANDARD 20)
 
 
 
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/SQLiteCpp)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/SQLiteCpp
+        ${CMAKE_CURRENT_LIST_DIR}/headerFiles)
 
 
 add_executable(The_Bank_Console main.cpp
-        user.h
-        account.h
-        checkUserInput.h
-        conversionRate.h
-        login.h
-        fillData.h
+        headerFiles/user.h
+        headerFiles/account.h
+        headerFiles/checkUserInput.h
+        headerFiles/conversionRate.h
+        headerFiles/login.h
+        headerFiles/fillData.h
 )
 
 target_link_libraries(The_Bank_Console

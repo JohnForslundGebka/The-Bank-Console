@@ -25,12 +25,10 @@ int checkUserInput(int max, std::string message)
 
 std::string checkCurrencyInput()
 {
-    bool validCurrency = false;
     std::string currencyInput;
     std::string acceptedCurrencies[6] = {"SEK", "USD", "DKK", "EUR", "NOK", "RSD"};
 
     std::cout << "\n\tWhich currency do you want to exchange to? ";
-    
     do
     {
         std::cin >> currencyInput;
@@ -43,13 +41,12 @@ std::string checkCurrencyInput()
         {
             if (temp == currencyInput)
             {
-                validCurrency = true;
                 return currencyInput;
             }
         }
         std::cout << "\n\tInvalid input! Please enter a valid currency: ";
     
-    } while (!validCurrency);
+    } while (true);
 
 
 
