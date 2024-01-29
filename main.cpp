@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
+#include <SQLiteCpp/SQLiteCpp.h>
 #include "checkUserInput.h"
 #include "account.h"
 #include "user.h"
-#include <string>
-#include <SQLiteCpp/SQLiteCpp.h>
+
+
 
 
 void clearScreen() 

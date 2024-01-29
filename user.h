@@ -4,37 +4,28 @@
 #include <fstream>
 #include <sstream>
 
-
+//Functions that opens the database and gets the conversion rates based on the input strings in the function
 double getConversionRate(const std::string& fromCurrency, const std::string& toCurrency)
 {
-    std::map<std::pair<std::string, std::string>, double> currencyConverter;
 
-    //Create an import stream and link it to the proper file
-    std::ifstream file("conversion_rates.csv");
-    if (!file) {
-        std::cout << "\n\n\tERROR FILE COULD NOT BE OPEND!";   //write error if file could not be opend
-        return -1;
-    }
-    std::string line;
-    //loop that fills the map with data from the .cvs file
-    while (std::getline(file,line))
+    //open database
+    SQLite::Database db("bankDatabase.db");
+
+    //create query
+    SQLite::Statement query(db, "SELECT * FROM currency_rates WHERE currency_from = '"+fromCurrency+"' AND currency_to = '"+toCurrency+"'");
+
+    try
     {
-        std::stringstream ss(line);
-        std::string from, to;
-        double rate;
-
-        std::getline(ss,from, ',');
-        std::getline(ss,to,',');
-        ss >> rate;
-
-        //add the rates to the map
-        currencyConverter[{from,to}] = rate;
+        while (query.executeStep())
+        {
+            return query.getColumn(2);   //get currency rate from the database
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << "exception: " << e.what() << std::endl;
     }
 
-    file.close();  //close file
-
-    
-    return currencyConverter[{fromCurrency, toCurrency}];
 }
 
 //class for user
