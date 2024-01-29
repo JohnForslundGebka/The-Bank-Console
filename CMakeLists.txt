@@ -3,10 +3,9 @@ project(The_Bank_Console)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include_directories(${CMAKE_CURRENT_LIST_DIR}/headerFiles)
 
-
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/SQLiteCpp
-        ${CMAKE_CURRENT_LIST_DIR}/headerFiles)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/SQLiteCpp)
 
 
 add_executable(The_Bank_Console main.cpp

@@ -48,23 +48,23 @@ public:
         std::string tocurr;
         std::string fromcurr;
         double amount;
+
         printAllAccounts();
 
         std::cout << "\n\tSelect from which account you want to make transfer:\t ";
         from = checkUserInput(userAccounts.size(), "Please enter a valid digit from the list of accounts:");
+        from -= 1;
 
         std::cout << "\n\tSelect to which account you want to make transfer:\t ";
         to = checkUserInput(userAccounts.size(), "Please enter a valid digit from the list of accounts:");
+        to -= 1;
+        tocurr = userAccounts[to].getCurrency();
+        fromcurr = userAccounts[from].getCurrency();
         
         while (true)
         {
             std::cout << "\n\tHow much:\t ";
             amount = checkUserInput(99999, "Please enter a valid amount: ");
-            //adjust for index
-            from -= 1;
-            to -= 1;
-            tocurr = userAccounts[to].getCurrency();
-            fromcurr = userAccounts[from].getCurrency();
             //calculate the new amount, if the currencies are not the same, do a conversion
             double fixamount = getConversionRate(fromcurr, tocurr) * amount;
             //checks if the user has enough funds to complete the transfer
