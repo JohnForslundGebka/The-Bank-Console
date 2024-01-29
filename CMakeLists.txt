@@ -11,6 +11,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/SQLiteCpp)
 add_executable(The_Bank_Console main.cpp
         user.h
         account.h
+        checkUserInput.h
 )
 
 target_link_libraries(The_Bank_Console

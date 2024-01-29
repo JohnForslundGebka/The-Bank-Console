@@ -1,8 +1,10 @@
 #include <iostream>
+#include "checkUserInput.h"
 #include "account.h"
 #include "user.h"
 #include <string>
 #include <SQLiteCpp/SQLiteCpp.h>
+
 
 void clearScreen() 
 {
@@ -36,14 +38,15 @@ User &logIn(User users[])
                          << " 3 attempts:\t";
                for (int j = 0; j < 3; j++)     //for loop that checks the pincode
                {
-                   std::cin >> userInputPinCode;
+                   
+                   userInputPinCode = checkUserInput(9999, "Please enter a valid pincode: ");          //Making sure the input for pincode is valid.
                    if (userInputPinCode == users[i].getPinCode())    //if the pincode matches, return the active user
                        return users[i];
 
                    //end the program if user tries to enter pincode three times
                    if (j==2)
                    {
-                       std::cout << "\n\tYou have entered the wrong pincode to many times\n";
+                       std::cout << "\n\tYou have entered the wrong pincode to many times. \nProgram closing...\n";
                        exit(EXIT_FAILURE);
                    } else
                    std::cout << "\n\tERROR! Wrong pincode, please try again:\t";
@@ -87,17 +90,23 @@ void fillAccounts(User _users[])
     }
 }
 
+
+
 void menu(User &activeUser)
 {
     int menuChoice;
+
+    clearScreen(); 
     std::string input;
     std::cout << "\n\t" << activeUser.getUserName() << "s main menu " << std::endl;
     std::cout << "\t1.   See your accounts and balance\n"
               << "\t2.   Transfer money\n"
               << "\t3.   Exchange money\n"
               << "\t4.   Log out\n"
-              << "\t:";
-    std::cin >> menuChoice;
+              << "\tChoice: ";
+    
+    // Calls the input function making sure the user inputs a valid menu choice.
+    menuChoice = checkUserInput(4, "Please enter a valid choice from the menu: ");
 
     switch (menuChoice)
     {
