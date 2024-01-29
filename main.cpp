@@ -6,9 +6,6 @@
 #include "account.h"
 #include "user.h"
 
-
-
-
 void clearScreen() 
 {
     #if defined(_WIN32) || defined(_WIN64)
