@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(The_Bank_Console main.cpp
         user.h
-        account.h)
+        account.h
+        checkUserInput.h)
