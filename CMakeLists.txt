@@ -13,6 +13,8 @@ add_executable(The_Bank_Console main.cpp
         account.h
         checkUserInput.h
         conversionRate.h
+        login.h
+        fillData.h
 )
 
 target_link_libraries(The_Bank_Console
