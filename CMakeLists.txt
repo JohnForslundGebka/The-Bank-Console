@@ -5,6 +5,12 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(${CMAKE_CURRENT_LIST_DIR}/headerFiles)
 
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/external/SQLiteCpp/.git")
+	message(FATAL_ERROR "SQLiteCpp submodule does not exist. You must run 'git submodule update --init --recursive' to initialize it.")
+else()
+	message("-- SQLiteCpp submodule found.")
+endif()
+
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/SQLiteCpp)
 
 
